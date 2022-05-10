@@ -381,9 +381,9 @@
             <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
         </div>
           <div class="row">
-            <div class="p-field p-col-4 p-md-2" >
+            <div class="p-field p-col-4 p-md-2" style="padding-top: 49px;">
               <label for="basic">Start Date</label>
-              <p-calendar  [maxDate]="maxDate"  (onSelect)="onBlurMethod(false)" inputId="basic" [(ngModel)]="startDate" [showIcon]="true" [showTime]="false"  showButtonBar="true" ></p-calendar>
+              <p-calendar panelStyleClass="padding-top: 49px;" [maxDate]="maxDate"  (onSelect)="onBlurMethod(false)" inputId="basic" [(ngModel)]="startDate" [showIcon]="true" [showTime]="false"  showButtonBar="true" ></p-calendar>
            </div>
            <div class="p-field p-col-4 p-md-2">
             <label for="basic">End Date</label>
