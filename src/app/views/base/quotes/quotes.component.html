@@ -1,0 +1,79 @@
+
+
+<div class="row">
+  <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
+    <div class="sizes">
+      <textarea [(ngModel)]="quoteValue" rows="10" cols="50" pInputTextarea></textarea>
+    </div>
+    <div class="sizes">
+      <button pButton pRipple label="Save" (click)="SaveQuote()"
+      class="p-button-raised">
+    </button>
+    </div>
+    </p-dialog>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">Manage Quotes</div>
+      <div class="card-body">
+        <div *ngIf="showLoader" class="card">
+          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+      </div>
+<!-- <p-scrollPanel [style]="{width: '100%', height: '800px'}"> -->
+  <p-table
+    styleClass="p-datatable-gridlines"
+    #dt
+    [value]="quotesList"
+    [reorderableColumns]="true"
+    [paginator]="true"
+    [scrollable]="true"
+    [rows]="10"
+    scrollHeight="50vh"
+    [showCurrentPageReport]="true"
+    [columnResizeMode]="true"
+    [resizableColumns]="true"
+    responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['sNo','quotesId','quotesTitle']"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+        </span>
+    </div>
+</ng-template>
+    <ng-template pTemplate="header">
+      <tr >
+        <th style="min-width:100px" pResizableColumn pSortableColumn="sNo">S.No<p-sortIcon field="sNo"></p-sortIcon></th>
+        <th style="min-width:100px" pResizableColumn pSortableColumn="quotesId">Quotes Id<p-sortIcon field="quotesId"></p-sortIcon></th>
+        <th style="min-width:100px" pResizableColumn pSortableColumn="quotesTitle">Quotes Title<p-sortIcon field="quotesTitle"></p-sortIcon></th>
+        <th style="min-width:100px">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-report>
+      <tr style="width: 20rem">
+        <td style="flex-basis:25%">{{ report.sNo }}</td>
+        <td style="flex-basis:25%">{{ report.quotesId }}</td>
+        <td style="flex-basis:25%">{{ report.quotesTitle }}</td>
+        <td style="flex-basis:25%">
+          <a pButton pRipple type="button" (click)="OpenDialog('Edit Quote',report)" icon="pi pi-user-edit"
+              class="p-button-rounded"></a>
+          <a pButton pRipple type="button" (click)="remove(report.quotesId)" style="margin-left: 5px;"
+              icon="pi pi-trash" class="p-button-rounded"></a>
+      </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <a (click)="OpenDialog('Add Quote',null)" class="btn btn-primary"
+        >Add New</a
+      >
+    </ng-template>
+  </p-table>
+<!-- </p-scrollPanel> -->
+</div></div></div></div>
+<p-toast position="bottom-center"></p-toast>
+<!-- <p-progressBar [value]="value"></p-progressBar> -->
+<!-- <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar> -->
+

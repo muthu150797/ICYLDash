@@ -1,0 +1,76 @@
+<div class="row">
+  <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
+    <div class="sizes">
+      <input [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
+    </div>
+    <br/>
+    <div class="sizes">
+      <textarea [(ngModel)]="description" rows="10" cols="50" pInputTextarea></textarea>
+    </div><br/>
+    <div class="sizes">
+      <button pButton pRipple label="Save" (click)="SaveDonationCategory()"
+      class="p-button-raised">
+    </button>
+    </div>
+    </p-dialog>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">Manage Donation Category</div>
+      <div class="card-body">
+        <div *ngIf="showLoader" class="card">
+          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+      </div>
+  <p-table
+    styleClass="p-datatable-gridlines"
+    #dt
+    [value]="donationList"
+    [reorderableColumns]="true"
+    [paginator]="true"
+    [scrollable]="true"
+    [rows]="10"
+    scrollHeight="50vh"
+    [showCurrentPageReport]="true"
+    [columnResizeMode]="true"
+    [resizableColumns]="true"
+    responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['sNo','donationName','description']"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+  <ng-template pTemplate="caption">
+    <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+        </span>
+    </div>
+</ng-template>
+    <ng-template pTemplate="header">
+      <tr >
+        <th style="min-width:100px" pResizableColumn pSortableColumn="sNo">S.No<p-sortIcon field="sNo"></p-sortIcon></th>
+        <th style="min-width:100px" pResizableColumn pSortableColumn="donationName">Category<p-sortIcon field="donationName"></p-sortIcon></th>
+        <th style="min-width:100px" pResizableColumn pSortableColumn="description">Description<p-sortIcon field="description"></p-sortIcon></th>
+        <th style="min-width:100px">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-report>
+      <tr style="width: 20rem">
+        <td style="flex-basis:25%">{{ report.sNo }}</td>
+        <td style="flex-basis:25%">{{ report.donationName }}</td>
+        <td style="flex-basis:25%">{{ report.description }}</td>
+        <td style="flex-basis:25%">
+          <a pButton pRipple type="button" (click)="OpenDialog('Edit Donation Description',report)" icon="pi pi-user-edit"
+              class="p-button-rounded"></a>
+          <a pButton pRipple type="button" (click)="remove(report.id)" style="margin-left: 5px;"
+              icon="pi pi-trash" class="p-button-rounded"></a>
+      </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <a (click)="OpenDialog('Add Donation Description',null)" class="btn btn-primary"
+        >Add New</a
+      >
+    </ng-template>
+  </p-table>
+</div></div></div></div>
+<p-toast position="bottom-center"></p-toast>
