@@ -410,7 +410,7 @@
             [resizableColumns]="true"
             responsiveLayout="scroll"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [globalFilterFields]="['sNo','name','transId','settleAmount','submitTimeLocal','accountType','accountNumber','transactionStatus']"
+            [globalFilterFields]="['name','transId','settleAmount','submitTimeLocal','category','accountNumber','transactionStatus']"
             [rowsPerPageOptions]="[10, 25, 50]"
           >
           <ng-template pTemplate="caption">
@@ -428,24 +428,24 @@
             <ng-template pTemplate="header">
 
               <tr>
-                <th pResizableColumn pSortableColumn="sNo">SNo<p-sortIcon field="sNo"></p-sortIcon></th>
+                <!-- <th pResizableColumn pSortableColumn="sNo">SNo<p-sortIcon field="sNo"></p-sortIcon></th> -->
                 <th pResizableColumn pSortableColumn="transId">TransId<p-sortIcon field="transId"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="settleAmount">Amount<p-sortIcon field="settleAmount"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="submitTimeLocal">Date<p-sortIcon field="submitTimeLocal"></p-sortIcon></th>
-                <th pResizableColumn pSortableColumn="accountType">Payment Method<p-sortIcon field="accountType"></p-sortIcon></th>
+                <th pResizableColumn pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="accountNumber">Account Number<p-sortIcon field="accountNumber"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="transactionStatus">Transaction Status<p-sortIcon field="transactionStatus"></p-sortIcon></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-report>
               <tr style="height:30px">
-                <td>{{ report.sNo }}</td>
+                <!-- <td>{{ report.sNo }}</td> -->
                 <td>{{ report.transId }}</td>
                 <td>{{ report.name }}</td>
                 <td>{{ report.settleAmount }}</td>
                 <td>{{ report.submitTimeLocal }}</td>
-                <td>{{ report.accountType }}</td>
+                <td>{{ report.category }}</td>
                 <td>{{ report.accountNumber }}</td>
                 <td>{{ report.transactionStatus }}</td>
               </tr>
