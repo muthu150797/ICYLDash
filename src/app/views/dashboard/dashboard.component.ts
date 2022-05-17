@@ -28,7 +28,8 @@ import * as xlsx from "xlsx";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild("dt") content: ElementRef;
+  @ViewChild("dt") content: any;
+  @ViewChild("dt", { static: false }) filterTable: any;
 
   first = 0;
   rows = 10;
@@ -64,6 +65,8 @@ export class DashboardComponent implements OnInit {
   maxDate: any;
   exportColumns: any;
   date: Date;
+  FilteredData: any;
+  TotalAmount: number = 0;
   constructor(
     public datepipe: DatePipe,
     private primengConfig: PrimeNGConfig,
@@ -73,6 +76,33 @@ export class DashboardComponent implements OnInit {
     private dataservice: DataService
   ) {
     //this.GetAllTransactionList();
+  }
+  ngAfterViewChecked() {
+    console.log("this.DataTable", this.filterTable.filteredValue);
+    let filterData = this.filterTable.filteredValue;
+    if (this.filterTable.filteredValue == undefined) {
+      // this.TotalAmount=0;
+      // this.transReport.forEach(
+      //   (res, i) =>
+      //     (this.TotalAmount = this.TotalAmount + Number(res["settleAmount"]))
+      // );
+    }
+    else if (this.filterTable.filteredValue==null) {
+      this.transReport.forEach(
+        (res, i) =>
+          (this.TotalAmount = this.TotalAmount + Number(res["settleAmount"]))
+      );
+    }
+    else if (this.filterTable.filteredValue!=null) {
+     this.CountAmount(this.filterTable.filteredValue)
+    }
+  }
+  CountAmount(filterData: any) {
+    this.TotalAmount = 0;
+    filterData.forEach(
+      (res, i) =>
+        (this.TotalAmount = this.TotalAmount + Number(res["settleAmount"]))
+    );
   }
   onBlurMethod(event: any) {
     console.log(event);
@@ -151,7 +181,7 @@ export class DashboardComponent implements OnInit {
                 "Val 3",
                 "Val 4",
                 "Val 5",
-                "Val 6"
+                "Val 6",
               ],
             ],
           },
@@ -168,7 +198,7 @@ export class DashboardComponent implements OnInit {
         p.name,
         p.settleAmount.toString(),
         p.submitTimeLocal,
-        p.transactionStatus
+        p.transactionStatus,
       ]);
       slno = slno + 1;
     }
@@ -223,6 +253,11 @@ export class DashboardComponent implements OnInit {
       .subscribe((res) => {
         if (res != null) {
           res.forEach((res, i) => (res["sNo"] = i + 1));
+          res.forEach(
+            (res, i) =>
+              (this.TotalAmount =
+                this.TotalAmount + Number(res["settleAmount"]))
+          );
           this.transReport = res;
           this.successTransCount = res.filter(function (item) {
             return item.transactionStatus == "settledSuccessfully";
@@ -743,6 +778,18 @@ export class DashboardComponent implements OnInit {
       dataKey: col.field,
     }));
   }
+  onChange(data: any, dataKey: any) {
+    this.TotalAmount = 0;
+    console.log(dataKey.target.value);
+    let filterData = this.transReport.filter((x: any) => {
+      return x.category == dataKey.target.value;
+    });
+    // this.FilteredData = data._value.filter(function(data) {
+    //   return data._value.category == 'b';
+    // });
+    console.log("data", filterData);
+    console.log("fileterd", data._value);
+  }
   loadCustomers(event: any) {}
   GetTodayReport() {
     this.onBlurMethod(true);
@@ -750,23 +797,25 @@ export class DashboardComponent implements OnInit {
   }
   next() {
     this.first = this.first + this.rows;
-}
+  }
 
-prev() {
+  prev() {
     this.first = this.first - this.rows;
-}
+  }
 
-reset() {
+  reset() {
     this.first = 0;
-}
+  }
 
-isLastPage(): boolean {
-    return this.transReport ? this.first === (this.transReport.length - this.rows): true;
-}
+  isLastPage(): boolean {
+    return this.transReport
+      ? this.first === this.transReport.length - this.rows
+      : true;
+  }
 
-isFirstPage(): boolean {
+  isFirstPage(): boolean {
     return this.transReport ? this.first === 0 : true;
-}
+  }
 
   //****************PrimeNG DataTable Pagination Method End*********************** */
   // ********************User To Remove User from User List*************************/
