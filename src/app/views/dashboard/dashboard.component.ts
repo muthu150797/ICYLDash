@@ -12,6 +12,7 @@ import {
   Inject,
   ElementRef,
   ViewChild,
+  ChangeDetectorRef,
 } from "@angular/core";
 //declare let jsPDF;
 // import jsPDF from "jspdf";
@@ -69,6 +70,7 @@ export class DashboardComponent implements OnInit {
   TotalAmount: number = 0;
   constructor(
     public datepipe: DatePipe,
+    private cdr: ChangeDetectorRef,
     private primengConfig: PrimeNGConfig,
     private messageService: MessageService,
 
@@ -78,14 +80,10 @@ export class DashboardComponent implements OnInit {
     //this.GetAllTransactionList();
   }
   ngAfterViewChecked() {
-    console.log("this.DataTable", this.filterTable.filteredValue);
+    console.log("DataTable", this.filterTable.filteredValue);
     let filterData = this.filterTable.filteredValue;
     if (this.filterTable.filteredValue == undefined) {
-      // this.TotalAmount=0;
-      // this.transReport.forEach(
-      //   (res, i) =>
-      //     (this.TotalAmount = this.TotalAmount + Number(res["settleAmount"]))
-      // );
+
     }
     else if (this.filterTable.filteredValue==null) {
       this.transReport.forEach(
@@ -96,6 +94,7 @@ export class DashboardComponent implements OnInit {
     else if (this.filterTable.filteredValue!=null) {
      this.CountAmount(this.filterTable.filteredValue)
     }
+    this.cdr.detectChanges();
   }
   CountAmount(filterData: any) {
     this.TotalAmount = 0;
