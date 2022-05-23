@@ -1,7 +1,7 @@
 <div class="row">
   <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
     <div class="sizes">
-      <input [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
+      <input [readonly]="true" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
     </div>
     <br/>
     <div class="sizes">

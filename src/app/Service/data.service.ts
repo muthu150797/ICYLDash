@@ -105,7 +105,6 @@ export class DataService {
     })
   }
   RequestPassword(emailId:any){
-    alert(emailId)
     let url= 'https://localhost:7274/api/Account/ResetPassword';
     return this.http.post<any>(url,{
       "userName": emailId,
@@ -123,4 +122,8 @@ export class DataService {
       "newPassword": newPassword
     })
   }
+GetAllSubscription(){
+  let url=environment.baseUrl+'api/Payment/GetAllSubscription';
+  return this.http.post<any>(url,null)
+}
 }
