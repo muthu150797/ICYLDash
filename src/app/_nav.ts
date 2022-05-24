@@ -142,6 +142,11 @@ export const navItems: INavData[] = [
         name: 'View',
         url: '/base/users',
         icon: 'cil-featured-playlist'
+      },
+      {
+        name: 'Subscription',
+        url: '/base/Subscription',
+        icon: 'cil-featured-playlist'
       }
     ]
   },

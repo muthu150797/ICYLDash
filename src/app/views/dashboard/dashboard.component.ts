@@ -247,7 +247,6 @@ export class DashboardComponent implements OnInit {
   GetAllTransactionList(today: any) {
     this.isToday = today;
     this.showLoader = true;
-    this.dataservice.GetAllSubscription().subscribe((res)=>console.log("subscr",res));
     this.dataservice
       .GetAllTransaction(this.fromDate, this.toDate, false)
       .subscribe((res) => {

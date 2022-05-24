@@ -126,4 +126,16 @@ GetAllSubscription(){
   let url=environment.baseUrl+'api/Payment/GetAllSubscription';
   return this.http.post<any>(url,null)
 }
+CancelSubscription(id:any){
+  let url=environment.baseUrl+'api/Payment/CancelSubscription'
+  return this.http.post<any>(url,{
+    "subscriptionId": id,
+    "name": "string",
+    "subscriptionStatus": "string",
+    "createdOn": "string",
+    "paymentMethod": "string",
+    "accountNumber": "string",
+    "amount": 0
+  })
+}
 }

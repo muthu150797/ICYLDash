@@ -20,6 +20,7 @@ import { QuickDonationComponent } from './quick-donation/quick-donation.componen
 import { DonationCategoryComponent } from './donation-category/donation-category.component';
 import { AuthGuard } from '../../Service/auth.guard';
 import { UsersComponent } from './users/users.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,14 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        data: {
+          title: 'Cards'
+        }
+      },
+      //Subscription
+      {
+        path: 'Subscription',
+        component: SubscriptionComponent,
         data: {
           title: 'Cards'
         }

@@ -71,6 +71,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { DonationCategoryComponent } from './donation-category/donation-category.component';
 import { UsersComponent } from './users/users.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
   imports: [
@@ -121,6 +122,7 @@ import { UsersComponent } from './users/users.component';
     QuickDonationComponent,
     DonationCategoryComponent,
     UsersComponent,
+    SubscriptionComponent,
 
   ]
 })
