@@ -139,7 +139,7 @@ export const navItems: INavData[] = [
     icon: 'cil-user',
     children: [
       {
-        name: 'View',
+        name: 'All Users',
         url: '/base/users',
         icon: 'cil-featured-playlist'
       },

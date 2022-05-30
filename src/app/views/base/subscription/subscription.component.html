@@ -12,7 +12,7 @@
     </p-dialog> -->
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header">Subcriptions</div>
+      <div class="card-header">Recurring Billing</div>
       <div class="card-body">
         <!-- <div *ngIf="showLoader" class="card">
           <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
@@ -46,6 +46,7 @@
       <tr >
         <th style="min-width:100px" pResizableColumn pSortableColumn="subscriptionId">Subscription Id<p-sortIcon field="subscriptionId"></p-sortIcon></th>
         <th style="min-width:100px" pResizableColumn pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+        <th style="min-width:100px" pResizableColumn pSortableColumn="amount">Amount<p-sortIcon field="amount"></p-sortIcon></th>
         <th style="min-width:100px" pResizableColumn pSortableColumn="createdOn">CreatedOn<p-sortIcon field="createdOn"></p-sortIcon></th>
         <th style="min-width:100px" pResizableColumn pSortableColumn="accountNumber">Account Number<p-sortIcon field="accountNumber"></p-sortIcon></th>
         <th style="min-width:100px" pResizableColumn pSortableColumn="subscriptionStatus">Status<p-sortIcon field="subscriptionStatus"></p-sortIcon></th>
@@ -56,6 +57,7 @@
       <tr style="width: 20rem">
         <td style="flex-basis:25%">{{ report.subscriptionId }}</td>
         <td style="flex-basis:25%">{{ report.name }}</td>
+        <td style="flex-basis:25%">{{ report.amount }}</td>
         <td style="flex-basis:25%">{{ report.createdOn }}</td>
         <td style="flex-basis:25%">{{ report.accountNumber }}</td>
         <td style="flex-basis:25%">{{ report.subscriptionStatus }}</td>

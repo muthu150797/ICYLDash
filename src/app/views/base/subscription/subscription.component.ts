@@ -51,7 +51,7 @@ export class SubscriptionComponent implements OnInit {
     });
   }
   remove(name: any,id:any) {
-    if (confirm("Are you sure want to delete "+id+ "?")) {
+    if (confirm("Are you sure want to cancel subscription "+id+ "?")) {
       this.dataservice.CancelSubscription(Number(id)).subscribe(
         (res) => {
           if (res.statusCode === 200) {
