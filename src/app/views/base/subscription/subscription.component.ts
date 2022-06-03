@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService, PrimeNGConfig } from "primeng/api";
 import { DataService } from "../../../Service/data.service";
-
+import { Observable } from "rxjs";
+import { interval } from "rxjs";
+import { takeWhile } from "rxjs/operators";
 @Component({
   selector: "app-subscription",
   templateUrl: "./subscription.component.html",
@@ -11,6 +13,7 @@ export class SubscriptionComponent implements OnInit {
   subscriptionList: any;
   first = 0;
   rows = 10;
+  sub: any;
   constructor(
     private dataservice: DataService,
     private primengConfig: PrimeNGConfig,
@@ -50,13 +53,12 @@ export class SubscriptionComponent implements OnInit {
       }
     });
   }
-  remove(name: any,id:any) {
-    if (confirm("Are you sure want to cancel subscription "+id+ "?")) {
+  remove(name: any, id: any) {
+    if (confirm("Are you sure want to cancel subscription " + id + "?")) {
       this.dataservice.CancelSubscription(Number(id)).subscribe(
         (res) => {
           if (res.statusCode === 200) {
-            this.ShowSuccess("Subscription deleted successfully");
-
+            this.ShowSuccess("Subscription deleted successfully and it will load table after 5 seconds");
           } else {
             this.ShowError(res.message);
           }
@@ -65,18 +67,20 @@ export class SubscriptionComponent implements OnInit {
           this.ShowError("Server error,try again later");
         }
       );
-      this.GetAllSubscription();
+      this.sub = interval(5000).subscribe((val) => {
+        this.GetAllSubscription();
+        this.sub.unsubscribe();
+      });
     }
   }
-  ShowError(message:any) {
+  ShowError(message: any) {
     this.messageService.add({
       severity: "error",
       summary: message,
       detail: "API Key or URL is invalid.",
     });
   }
-  ShowSuccess(message:any) {
-
+  ShowSuccess(message: any) {
     this.messageService.add({
       severity: "success",
       summary: message,
