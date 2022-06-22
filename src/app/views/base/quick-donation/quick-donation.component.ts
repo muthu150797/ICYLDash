@@ -104,9 +104,9 @@ export class QuickDonationComponent implements OnInit {
     }
     this.Popup = true;
   }
-  remove(id: any) {
+  remove(id: any,amount:any) {
     this.showLoader=true;
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("Are you sure want to delete the amount "+amount+"?")) {
       this.service.DeleteQucikAmount(Number(id)).subscribe(
         (res) => {
           if (res.statusCode === 200) {

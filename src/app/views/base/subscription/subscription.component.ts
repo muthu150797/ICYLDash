@@ -58,7 +58,7 @@ export class SubscriptionComponent implements OnInit {
       this.dataservice.CancelSubscription(Number(id)).subscribe(
         (res) => {
           if (res.statusCode === 200) {
-            this.ShowSuccess("Subscription deleted successfully and it will load table after 5 seconds");
+            this.ShowSuccess("Subscription deleted successfully and table will be loaded after 5 seconds");
           } else {
             this.ShowError(res.message);
           }
