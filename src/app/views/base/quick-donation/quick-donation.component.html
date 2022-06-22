@@ -58,7 +58,7 @@
         <td style="flex-basis:25%">
           <a pButton pRipple type="button" (click)="OpenDialog('Edit Quick Amount',report)" icon="pi pi-user-edit"
               class="p-button-rounded"></a>
-          <a pButton pRipple type="button" (click)="remove(report.id)" style="margin-left: 5px;"
+          <a pButton pRipple type="button" (click)="remove(report.id,report.amount)" style="margin-left: 5px;"
               icon="pi pi-trash" class="p-button-rounded"></a>
       </td>
       </tr>
