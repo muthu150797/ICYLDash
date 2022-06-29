@@ -82,7 +82,7 @@ export class DataService {
     })
   }
   GetDonationCategory(){
-    let url=environment.baseUrl+'api/Donations/GetDonations'
+    let url=environment.baseUrl+'api/Donations/GetAllCategory'
     return this.http.post<any>(url,null)
   }
   SaveDonationCategory(id: number, donationName: string, description: any) {
@@ -95,11 +95,12 @@ export class DataService {
       "message": ""
     });
   }
-  DeleteDonationCategory(id:any){
-    let url=environment.baseUrl+'api/Configuration/DeleteDonationType'
+  BlockOrUnblockCategory(id:any,active:any){
+    let url=environment.baseUrl+'api/Configuration/BlockOrUnblockCategory'
     return this.http.post<any>(url,{
       "id": id,
       "donationName": "",
+      "active":!active,
       "description": "",
       "accountNumber": "",
     })
