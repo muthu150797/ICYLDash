@@ -1,7 +1,7 @@
 <div class="row">
   <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
     <div class="sizes">
-      <input [readonly]="true" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
+      <input [readonly]="enableDonationName" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
     </div>
     <br/>
     <div class="sizes">
@@ -61,7 +61,7 @@
         <td style="flex-basis:25%">
           <a pButton pRipple type="button" (click)="OpenDialog('Edit Donation Description',report)" icon="pi pi-user-edit"
               class="p-button-rounded"></a>
-          <a pButton pRipple type="button" (click)="remove(report.id)" style="margin-left: 5px;"
+          <a pButton pRipple type="button" (click)="remove(report)" style="margin-left: 5px;"
               icon="pi pi-trash" class="p-button-rounded"></a>
       </td>
       </tr>

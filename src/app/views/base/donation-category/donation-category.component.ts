@@ -16,6 +16,7 @@ export class DonationCategoryComponent implements OnInit {
   id: number;
   amount: number;
   showLoader=false;
+  enableDonationName=true;
   donationName:string;
   category: string;
   description: any;
@@ -102,17 +103,19 @@ export class DonationCategoryComponent implements OnInit {
     this.donationName = "";
     this.description = "";
     this.title = title;
+    this.enableDonationName=false;
     if (donation != null) {
+      this.enableDonationName=true;
       this.id = Number(donation.id);
       this.donationName = donation.donationName;
       this.description = donation.description;
     }
     this.Popup = true;
   }
-  remove(id: any) {
+  remove(category: any) {
     this.showLoader=true;
-    if (confirm("Are you sure want to delete?")) {
-      this.service.DeleteDonationCategory(Number(id)).subscribe(
+    if (confirm("Are you sure want to block/Unblock?")) {
+      this.service.BlockOrUnblockCategory(Number(category.id),category.active).subscribe(
         (res) => {
           if (res.statusCode === 200) {
             this.LoadDonationCategory();
