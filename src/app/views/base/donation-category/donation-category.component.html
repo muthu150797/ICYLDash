@@ -21,7 +21,6 @@
           <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
       </div>
   <p-table
-    styleClass="p-datatable-gridlines"
     #dt
     [value]="donationList"
     [reorderableColumns]="true"
@@ -54,10 +53,10 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-report>
-      <tr style="width: 20rem">
-        <td style="flex-basis:25%">{{ report.sNo }}</td>
-        <td style="flex-basis:25%">{{ report.donationName }}</td>
-        <td style="flex-basis:25%">{{ report.description }}</td>
+      <tr style="width: 20rem" >
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.sNo }}</td>
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.donationName }}</td>
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.description }}</td>
         <td style="flex-basis:25%">
           <a pButton pRipple type="button" (click)="OpenDialog('Edit Donation Description',report)" icon="pi pi-user-edit"
               class="p-button-rounded"></a>

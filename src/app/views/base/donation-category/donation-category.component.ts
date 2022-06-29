@@ -132,5 +132,7 @@ export class DonationCategoryComponent implements OnInit {
     }
     this.showLoader=false;
   }
-
+  changeColor(value){
+    return value?'green' : 'red' // please adapt to your need
+}
 }
