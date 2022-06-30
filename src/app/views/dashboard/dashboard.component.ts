@@ -52,6 +52,8 @@ export class DashboardComponent implements OnInit {
     filter: true,
     resizable: true,
   };
+  cities: any;
+  selectedCityCode: string;
   radioModel: string = "Month";
   transReport: any;
   successTransCount: any;
@@ -70,6 +72,7 @@ export class DashboardComponent implements OnInit {
   TotalAmount: number = 0;
   categoryId:number=1;
   categoryList: any;
+  groupList: any;
   constructor(
     public datepipe: DatePipe,
     private cdr: ChangeDetectorRef,
@@ -79,6 +82,13 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private dataservice: DataService
   ) {
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
     //this.GetAllTransactionList();
   }
   GetAllCategory(){
@@ -86,6 +96,11 @@ export class DashboardComponent implements OnInit {
       this.categoryList=res.donationList;
       console.log("All category",this.categoryList);
     })
+    this.groupList =this.categoryList.map(x => ({
+      label: x.donationName,
+      value: x.id
+    }));
+    console.log("groupList", this.groupList);
   }
   ngAfterViewChecked() {
     console.log("DataTable", this.filterTable.filteredValue);
@@ -766,7 +781,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetAllCategory();
+
     this.primengConfig.ripple = true;
     this.startDate = new Date();
     this.endDate = new Date();

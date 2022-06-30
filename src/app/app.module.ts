@@ -53,6 +53,7 @@ import { ConfigurationModule } from './views/configuration/configuration.module'
 import { InputTextModule } from "primeng/inputtext";
 import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from 'primeng/button';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     //PrimeNg
     MessageModule,
+    DropdownModule,
     DialogModule,
     MessagesModule,
     ToastModule,
