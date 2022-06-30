@@ -85,14 +85,16 @@ export class DataService {
     let url=environment.baseUrl+'api/Donations/GetAllCategory'
     return this.http.post<any>(url,null)
   }
-  SaveDonationCategory(id: number, donationName: string, description: any) {
+  SaveDonationCategory(id: number, donationName: string, description: any,loginId:any,transactionKey:any) {
     let url=environment.baseUrl+'api/Configuration/SaveDonationType';
     return this.http.post<any>(url,{
       "id": id,
       "donationName": donationName,
       "description": description,
       "accountNumber": "",
-      "message": ""
+      "message": "",
+       "loginId":loginId,
+       "transactionKey":transactionKey
     });
   }
   BlockOrUnblockCategory(id:any,active:any){

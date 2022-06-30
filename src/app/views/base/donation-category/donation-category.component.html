@@ -1,17 +1,45 @@
 <div class="row">
-  <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
-    <div class="sizes">
-      <input [readonly]="enableDonationName" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter doantion name" />
-    </div>
-    <br/>
+  <p-dialog [maximizable]="false" [modal]="true" styleClass="p-fluid" [style]="{width: '600px'}" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
+    <ng-template pTemplate="content">
+      <div class="field col">
+        <label>Description:</label>
+        <textarea [(ngModel)]="description" rows="6" cols="50" pInputTextarea></textarea>
+      </div>
+        <div class="field col">
+          <label>Category:</label>
+          <input [readonly]="enableInputs" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter Category Name" />
+        </div>
+       <div class="field col">
+        <label>Login ID:</label>
+        <input [(ngModel)]="loginId" pInputText type="text"  placeholder="Enter Login ID" />
+       </div>
+       <div class="field col">
+        <label>Transaction Key:</label>
+        <input  [(ngModel)]="transactionKey" pInputText type="text"  placeholder="Enter TransactionKey" />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Save" (click)="SaveDonationCategory()" class="p-button-raised">
+    </button>
+  </ng-template>
+    <!-- <label>Description</label>
     <div class="sizes">
       <textarea [(ngModel)]="description" rows="10" cols="50" pInputTextarea></textarea>
     </div><br/>
+    <label>Description</label>
     <div class="sizes">
-      <button pButton pRipple label="Save" (click)="SaveDonationCategory()"
-      class="p-button-raised">
-    </button>
-    </div>
+      <input [readonly]="enableInputs" [(ngModel)]="donationName" pInputText type="text"  placeholder="Enter Category Name" />
+    </div><br/>
+    <label>Description</label>
+    <div class="sizes">
+      <input  [(ngModel)]="loginId" pInputText type="text"  placeholder="Enter Login ID" />
+    </div><br/>
+    <label>Description</label>
+    <div class="sizes">
+      <input  [(ngModel)]="transactionKey" pInputText type="text"  placeholder="Enter TransactionKey" />
+    </div><br/> -->
+
+
     </p-dialog>
   <div class="col-md-12">
     <div class="card">
@@ -63,7 +91,7 @@
         <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.loginId }}</td>
         <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.transactionKey }}</td>
         <td style="flex-basis:25%">
-          <a pButton pRipple type="button" (click)="OpenDialog('Edit Donation Description',report)" icon="pi pi-user-edit"
+          <a pButton pRipple type="button" (click)="OpenDialog('Edit Category',report)" icon="pi pi-user-edit"
               class="p-button-rounded"></a>
           <a pButton pRipple type="button" (click)="remove(report)" style="margin-left: 5px;"
               icon="pi pi-ban" class="p-button-rounded"></a>
@@ -71,7 +99,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">
-      <a (click)="OpenDialog('Add Donation Description',null)" class="btn btn-primary"
+      <a (click)="OpenDialog('Add Category',null)" class="btn btn-primary"
         >Add New</a
       >
     </ng-template>
