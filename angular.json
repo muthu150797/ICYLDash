@@ -36,7 +36,11 @@
               ]
             },
             "scripts": [
-               "node_modules/bootstrap/dist/js/bootstrap.min.js"
+               "node_modules/bootstrap/dist/js/bootstrap.min.js",
+               "./node_modules/@popperjs/core/dist/umd/popper.min.js",
+               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
               //  "node_modules/jspdf/dist/jspdf.min.js",
               // "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
             ],
