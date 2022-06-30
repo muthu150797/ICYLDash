@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit {
   FilteredData: any;
   TotalAmount: number = 0;
   categoryId:number=1;
+  categoryList: any;
   constructor(
     public datepipe: DatePipe,
     private cdr: ChangeDetectorRef,
@@ -79,6 +80,12 @@ export class DashboardComponent implements OnInit {
     private dataservice: DataService
   ) {
     //this.GetAllTransactionList();
+  }
+  GetAllCategory(){
+    this.dataservice.GetAllCategory().subscribe((res)=>{
+      this.categoryList=res.donationList;
+      console.log("All category",this.categoryList);
+    })
   }
   ngAfterViewChecked() {
     console.log("DataTable", this.filterTable.filteredValue);
@@ -759,7 +766,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.GetAllCategory();
     this.primengConfig.ripple = true;
     this.startDate = new Date();
     this.endDate = new Date();

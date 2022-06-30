@@ -21,6 +21,10 @@ export class DataService {
     "userId": 0
    });
   }
+  GetAllCategory(){
+    let url=environment.baseUrl+'api/Donations/GetAllCategory'
+    return this.http.post<any>(url,null);
+  }
   GetAllUsers() {
     let url=environment.baseUrl+'api/Account/GetAllUserDetails'
     return this.http.post<any>(url,null);
