@@ -20,7 +20,7 @@
         <div *ngIf="showLoader" class="card">
           <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
       </div>
-  <p-table
+  <p-table styleClass="p-datatable-sm p-datatable-gridlines" responsiveLayout="scroll" dataKey="id" resizableColumns="true"
     #dt
     [value]="donationList"
     [reorderableColumns]="true"
@@ -33,7 +33,7 @@
     [resizableColumns]="true"
     responsiveLayout="scroll"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [globalFilterFields]="['sNo','donationName','description']"
+    [globalFilterFields]="['id','donationName','description','loginId']"
     [rowsPerPageOptions]="[10, 25, 50]"
   >
   <ng-template pTemplate="caption">
@@ -46,22 +46,27 @@
 </ng-template>
     <ng-template pTemplate="header">
       <tr >
-        <th style="min-width:100px" pResizableColumn pSortableColumn="sNo">S.No<p-sortIcon field="sNo"></p-sortIcon></th>
-        <th style="min-width:100px" pResizableColumn pSortableColumn="donationName">Category<p-sortIcon field="donationName"></p-sortIcon></th>
-        <th style="min-width:100px" pResizableColumn pSortableColumn="description">Description<p-sortIcon field="description"></p-sortIcon></th>
-        <th style="min-width:100px">Action</th>
+        <th  pResizableColumn pSortableColumn="id">ID<p-sortIcon field="id"></p-sortIcon></th>
+        <th  pResizableColumn pSortableColumn="donationName">Category<p-sortIcon field="donationName"></p-sortIcon></th>
+        <th  pResizableColumn pSortableColumn="description">Description<p-sortIcon field="description"></p-sortIcon></th>
+        <th  pResizableColumn pSortableColumn="loginId">Login ID<p-sortIcon field="loginId"></p-sortIcon></th>
+        <th  pResizableColumn pSortableColumn="transactionKey">Transaction Key<p-sortIcon field="transactionKey"></p-sortIcon></th>
+
+        <th >Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-report>
       <tr style="width: 20rem" >
-        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.sNo }}</td>
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.id }}</td>
         <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.donationName }}</td>
         <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.description }}</td>
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.loginId }}</td>
+        <td [ngStyle]="{'color': changeColor(report.active)}" style="flex-basis:25%">{{ report.transactionKey }}</td>
         <td style="flex-basis:25%">
           <a pButton pRipple type="button" (click)="OpenDialog('Edit Donation Description',report)" icon="pi pi-user-edit"
               class="p-button-rounded"></a>
           <a pButton pRipple type="button" (click)="remove(report)" style="margin-left: 5px;"
-              icon="pi pi-trash" class="p-button-rounded"></a>
+              icon="pi pi-ban" class="p-button-rounded"></a>
       </td>
       </tr>
     </ng-template>

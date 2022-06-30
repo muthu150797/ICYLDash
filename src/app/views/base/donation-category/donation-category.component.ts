@@ -114,7 +114,7 @@ export class DonationCategoryComponent implements OnInit {
   }
   remove(category: any) {
     this.showLoader=true;
-    if (confirm("Are you sure want to block/Unblock?")) {
+    if (confirm('Are you sure want to '+(category.active==true?"disable ":"enable ")+category.donationName+"?")) {
       this.service.BlockOrUnblockCategory(Number(category.id),category.active).subscribe(
         (res) => {
           if (res.statusCode === 200) {
