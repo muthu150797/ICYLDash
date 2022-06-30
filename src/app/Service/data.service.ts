@@ -33,13 +33,14 @@ export class DataService {
     let url=environment.baseUrl+'api/Configuration/GetSupportReq'
     return this.http.post<any>(url,null)
   }
-  GetAllTransaction(startDate:any,endDate:any,today:any){
+  GetAllTransaction(startDate:any,endDate:any,today:any,categoryId:any){
     // let url=environment.baseUrl+'api/Payment/GetAllTransaction'
        let url=environment.baseUrl+'api/Payment/GetAllTransaction';
     return this.http.post<any>(url,{
       "StartDate":startDate,
       "EndDate":endDate,
-       "TodayReport":today
+       "TodayReport":today,
+        "categoryId":categoryId,
     })
   }
   GetQuotes(){

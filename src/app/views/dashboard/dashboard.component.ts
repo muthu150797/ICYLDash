@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
   date: Date;
   FilteredData: any;
   TotalAmount: number = 0;
+  categoryId:number=1;
   constructor(
     public datepipe: DatePipe,
     private cdr: ChangeDetectorRef,
@@ -248,7 +249,7 @@ export class DashboardComponent implements OnInit {
     this.isToday = today;
     this.showLoader = true;
     this.dataservice
-      .GetAllTransaction(this.fromDate, this.toDate, false)
+      .GetAllTransaction(this.fromDate, this.toDate, false,this.categoryId)
       .subscribe((res) => {
         if (res != null) {
           res.forEach((res, i) => (res["sNo"] = i + 1));
