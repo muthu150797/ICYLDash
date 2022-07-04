@@ -24,6 +24,8 @@ import { MessageModule } from "primeng/message";
 import { MessagesModule } from "primeng/messages";
 import { MessageService } from "primeng/api";
 import { ToastModule } from 'primeng/toast';
+import { DialogModule } from "primeng/dialog";
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -42,8 +44,10 @@ import { ToastModule } from 'primeng/toast';
     MessagesModule,
      MessageModule,
     ScrollPanelModule,
+    DialogModule,
     CalendarModule,
     InputTextModule,
+    DropdownModule,
     ConfirmDialogModule,
     ProgressBarModule,
     SliderModule,

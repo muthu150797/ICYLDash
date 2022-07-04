@@ -396,6 +396,14 @@
             <label for="basic">End Date</label>
             <p-calendar [maxDate]="maxDate" (onSelect)="onBlurMethod(false)"  inputId="basic" [(ngModel)]="endDate" [showIcon]="true" [showTime]="false" showButtonBar="true" ></p-calendar>
          </div>
+         <div class="p-field p-col-4 p-md-2">
+          <label >Category:</label>
+          <p-dropdown (onChange)="GetAllTransactionList(false)" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          </p-dropdown>
+          <!-- <p-dropdown [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          </p-dropdown> -->
+          </div>
+
 
             <!-- <div class="progress-group-bars">
                   <div class="progress progress-xs">
@@ -538,7 +546,9 @@
     </div>
     <!--/.col-->
   </div>
+
   <p-toast position="bottom-center"></p-toast>
   <!--/.row-->
 </div>
+
 

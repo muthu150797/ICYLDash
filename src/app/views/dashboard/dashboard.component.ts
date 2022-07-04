@@ -4,6 +4,7 @@ import { DataService } from "../../Service/data.service";
 import { Router } from "@angular/router";
 import { MessageService, PrimeNGConfig } from "primeng/api";
 import { ThisReceiver } from "@angular/compiler";
+
 // import { MatPaginator } from '@angular/material/paginator';
 import {
   Component,
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
   failureTransCount: number;
   expiryTransCount: any;
   fromDate: any;
+  Popup=false;
   toDate: any;
   pendingTransCount: any;
   isToday: any;
@@ -70,6 +72,7 @@ export class DashboardComponent implements OnInit {
   date: Date;
   FilteredData: any;
   TotalAmount: number = 0;
+  selectedCategoryId=1;
   categoryId:number=1;
   categoryList: any;
   groupList: any;
@@ -96,10 +99,10 @@ export class DashboardComponent implements OnInit {
       this.categoryList=res.donationList;
       console.log("All category",this.categoryList);
     })
-    this.groupList =this.categoryList.map(x => ({
-      label: x.donationName,
-      value: x.id
-    }));
+    // this.groupList =this.categoryList.map(x => ({
+    //   label: x.donationName,
+    //   value: x.id
+    // }));
     console.log("groupList", this.groupList);
   }
   ngAfterViewChecked() {
@@ -125,6 +128,9 @@ export class DashboardComponent implements OnInit {
       (res, i) =>
         (this.TotalAmount = this.TotalAmount + Number(res["settleAmount"]))
     );
+  }
+  openDialog(){
+    this.Popup=true;
   }
   onBlurMethod(event: any) {
     console.log(event);
@@ -267,11 +273,14 @@ export class DashboardComponent implements OnInit {
       detail: "",
     });
   }
+  GetAllTransaction(){
+
+  }
   GetAllTransactionList(today: any) {
     this.isToday = today;
     this.showLoader = true;
     this.dataservice
-      .GetAllTransaction(this.fromDate, this.toDate, false,this.categoryId)
+      .GetAllTransaction(this.fromDate, this.toDate, false,this.selectedCategoryId)
       .subscribe((res) => {
         if (res != null) {
           res.forEach((res, i) => (res["sNo"] = i + 1));
@@ -781,7 +790,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+     this.GetAllCategory();
     this.primengConfig.ripple = true;
     this.startDate = new Date();
     this.endDate = new Date();
