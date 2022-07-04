@@ -7,19 +7,23 @@ import { MessageService, PrimeNGConfig } from "primeng/api";
 @Component({
   selector: "app-dashboard",
   templateUrl: "./default-layout.component.html",
-   providers:[MessageService]
+  providers: [MessageService],
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
-  notificationCount:any;
-  year=new Date().getFullYear();
-  servive2:DataService;
+  notificationCount: any;
+  year = new Date().getFullYear();
+  servive2: DataService;
   supportReq: any;
-  constructor(private router:Router,
+  constructor(
+    private router: Router,
     private primengConfig: PrimeNGConfig,
     private service: DataService,
-    private messageService: MessageService) {this.servive2=this.service}
+    private messageService: MessageService
+  ) {
+    this.servive2 = this.service;
+  }
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
@@ -28,25 +32,32 @@ export class DefaultLayoutComponent {
     this.primengConfig.ripple = true;
   }
   Logout() {
-    localStorage.removeItem('userId');
-    this.router.navigate(['']);
+    localStorage.removeItem("userId");
+    this.router.navigate([""]);
   }
-  GetNotification(){
-   this.notificationCount=this.service.countReport;
-   this.ShowInfo("Today you've received "+this.notificationCount+" donation");
-
+  GetNotification() {
+    this.notificationCount = this.service.countReport;
+    this.ShowInfo(
+      "Today you've received " + this.notificationCount + " donation"
+    );
   }
-  LoadSupportReq(){
-this.service.GetSupportReq().subscribe((res)=>{
-    this.supportReq=res;
-  console.log(res);
-})
+  LoadSupportReq() {
+    this.service.GetSupportReq().subscribe((res) => {
+      this.supportReq = res;
+      console.log(res);
+    });
   }
-  ShowInfo(message:any) {
+  ShowInfo(message: any) {
     this.messageService.add({
       severity: "info",
       summary: message,
       detail: "",
     });
+  }
+  SendEmail(report) {
+    console.log("Send Email", report);
+    this.service.ReplyToUser(report).subscribe((res)=>{
+      this.ShowInfo("Email has been sent to "+report.userName);
+    })
   }
 }

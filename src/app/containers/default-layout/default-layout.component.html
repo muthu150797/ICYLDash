@@ -200,7 +200,10 @@
               <small class="text-muted float-right mt-1">{{report.createdOn | date:'MMM d, y h:mm a'}}</small>
             </div>
             <div class="text-truncate font-weight-bold">{{report.userName}}</div>
-            <small class="text-muted">{{report.description}}</small>
+            <small class="text-muted">{{report.description}}</small> <br>
+            <div class="text-truncate font-weight-bold">
+              <p style="color:blue" (click)="SendEmail(report)">Reply</p>
+            </div>
             <hr>
           </div>
 
