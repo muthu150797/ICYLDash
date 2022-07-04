@@ -14,12 +14,16 @@ export class SubscriptionComponent implements OnInit {
   first = 0;
   rows = 10;
   sub: any;
+  selectedCategoryId=1;
+  categoryList: any;
   constructor(
     private dataservice: DataService,
     private primengConfig: PrimeNGConfig,
     private messageService: MessageService
   ) {}
   ngOnInit(): void {
+    this.GetAllCategory();
+
     this.GetAllSubscription();
   }
   //****************PrimeNG DataTable Pagination method Start*********************** */
@@ -44,7 +48,7 @@ export class SubscriptionComponent implements OnInit {
   //****************PrimeNG DataTable Pagination Method End*********************** */
   // ********************User To Remove User from User List*************************/
   GetAllSubscription() {
-    this.dataservice.GetAllSubscription().subscribe((res) => {
+    this.dataservice.GetAllSubscription(this.selectedCategoryId).subscribe((res) => {
       if (res != null) {
         let subsList = res;
         subsList.forEach((subsList, i) => (subsList["sNo"] = i + 1));
@@ -55,7 +59,7 @@ export class SubscriptionComponent implements OnInit {
   }
   remove(name: any, id: any) {
     if (confirm("Are you sure want to cancel subscription " + id + "?")) {
-      this.dataservice.CancelSubscription(Number(id)).subscribe(
+      this.dataservice.CancelSubscription(Number(id),this.selectedCategoryId).subscribe(
         (res) => {
           if (res.statusCode === 200) {
             this.ShowSuccess("Subscription deleted successfully and table will be loaded after 5 seconds");
@@ -86,5 +90,11 @@ export class SubscriptionComponent implements OnInit {
       summary: message,
       detail: "",
     });
+  }
+  GetAllCategory(){
+    this.dataservice.GetAllCategory().subscribe((res)=>{
+      this.categoryList=res.donationList;
+      console.log("All category from subscription pahe",this.categoryList);
+    })
   }
 }

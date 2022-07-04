@@ -14,6 +14,13 @@
     <div class="card">
       <div class="card-header">Recurring Billing</div>
       <div class="card-body">
+        <div class="p-field p-col-4 p-md-2">
+          <label >Category:</label>
+          <p-dropdown (onChange)="GetAllSubscription()" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          </p-dropdown>
+          <!-- <p-dropdown [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          </p-dropdown> -->
+          </div>
         <!-- <div *ngIf="showLoader" class="card">
           <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
       </div> -->

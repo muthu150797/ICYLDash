@@ -72,7 +72,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import { DonationCategoryComponent } from './donation-category/donation-category.component';
 import { UsersComponent } from './users/users.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
-
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   imports: [
     CommonModule,
@@ -93,9 +93,11 @@ import { SubscriptionComponent } from './subscription/subscription.component';
      TableModule,
      InputTextModule,
      MessagesModule,
+     DropdownModule,
      MessageModule,
      ProgressSpinnerModule,
      CalendarModule,
+     DialogModule,
      ToastModule,
      ProgressBarModule,
      DialogModule,
