@@ -130,11 +130,12 @@ export class DataService {
       "newPassword": newPassword
     })
   }
-GetAllSubscription(){
-  let url=environment.baseUrl+'api/Payment/GetAllSubscription';
+GetAllSubscription(categoryId){
+  let url=environment.baseUrl+'api/Payment/GetAllSubscription?id='+categoryId;
   return this.http.post<any>(url,null)
 }
-CancelSubscription(id:any){
+CancelSubscription(id:any,categoryId:any){
+  alert(categoryId);
   let url=environment.baseUrl+'api/Payment/CancelSubscription'
   return this.http.post<any>(url,{
     "subscriptionId": id,
@@ -143,7 +144,8 @@ CancelSubscription(id:any){
     "createdOn": "string",
     "paymentMethod": "string",
     "accountNumber": "string",
-    "amount": 0
+    "amount": 0,
+    "categoryId":categoryId
   })
 }
 }
