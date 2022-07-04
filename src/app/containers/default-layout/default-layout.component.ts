@@ -57,7 +57,11 @@ export class DefaultLayoutComponent {
   SendEmail(report) {
     console.log("Send Email", report);
     this.service.ReplyToUser(report).subscribe((res)=>{
+      console.log("response from server for send mail",res);
+      if(res.statusCode==200)
       this.ShowInfo("Email has been sent to "+report.userName);
+      else
+      this.ShowInfo("Failed to Email, try again")
     })
   }
 }
