@@ -16,7 +16,7 @@
       <div class="card-body">
         <div class="p-field p-col-4 p-md-2">
           <label >Category:</label>
-          <p-dropdown (onChange)="GetAllSubscription()" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          <p-dropdown [style]="{'width':'220px'}"  (onChange)="GetAllSubscription()" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
           </p-dropdown>
           <!-- <p-dropdown [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
           </p-dropdown> -->
