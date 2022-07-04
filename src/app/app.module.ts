@@ -55,6 +55,7 @@ import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 @NgModule({
   imports: [
@@ -84,6 +85,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MessagesModule,
     ToastModule,
     ButtonModule,
+    InputTextareaModule,
     NgbModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

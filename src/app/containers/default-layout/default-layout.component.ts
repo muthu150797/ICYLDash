@@ -12,10 +12,14 @@ import { MessageService, PrimeNGConfig } from "primeng/api";
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
+  Popup=false;
+  mailTo='';
+  message='';
   notificationCount: any;
   year = new Date().getFullYear();
   servive2: DataService;
   supportReq: any;
+  report: any;
   constructor(
     private router: Router,
     private primengConfig: PrimeNGConfig,
@@ -54,14 +58,20 @@ export class DefaultLayoutComponent {
       detail: "",
     });
   }
-  SendEmail(report) {
-    console.log("Send Email", report);
-    this.service.ReplyToUser(report).subscribe((res)=>{
+  OpenDialog(report:any){
+    this.Popup=true;
+    this.report=report;
+    this.mailTo=report.emailId;
+  }
+  SendEmail() {
+    console.log("Send Email", this.report);
+    this.service.ReplyToUser(this.report,this.message).subscribe((res)=>{
       console.log("response from server for send mail",res);
       if(res.statusCode==200)
-      this.ShowInfo("Email has been sent to "+report.userName);
+      this.ShowInfo("Email has been sent to "+this.report.userName);
       else
       this.ShowInfo("Failed to Email, try again")
+      this.Popup=false;
     })
   }
 }

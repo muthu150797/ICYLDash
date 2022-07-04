@@ -202,7 +202,7 @@
             <div class="text-truncate font-weight-bold">{{report.userName}}</div>
             <small class="text-muted">{{report.description}}</small> <br>
             <div class="text-truncate font-weight-bold">
-              <p style="color:blue" (click)="SendEmail(report)">Reply</p>
+              <p style="color:blue" (click)="OpenDialog(report)">Reply</p>
             </div>
             <hr>
           </div>
@@ -341,6 +341,22 @@
       </tab>
     </tabset>
   </app-aside>
+  <p-dialog [maximizable]="false" [modal]="true" styleClass="p-fluid" [style]="{width: '600px'}" [header]="'Reply'" [(visible)]="Popup" [draggable]="true" [resizable]="true">
+    <ng-template pTemplate="content">
+         <div class="field col">
+          <label>Email:</label>
+          <input [readonly]="true" [(ngModel)]="mailTo" pInputText type="text"  placeholder="Enter Email" />
+        </div>
+        <div class="field col">
+          <label>Message:</label>
+          <textarea [(ngModel)]="message" rows="6" cols="50" pInputTextarea></textarea>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Send" (click)="SendEmail()" class="p-button-raised">
+    </button>
+  </ng-template>
+    </p-dialog>
 </div>
 <app-footer>
   <span><a href="http://icyl.org/">ICYL</a> &copy; {{year}}</span>

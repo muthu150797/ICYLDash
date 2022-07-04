@@ -35,13 +35,13 @@ export class DataService {
     let url = environment.baseUrl + "api/Configuration/GetSupportReq";
     return this.http.post<any>(url, null);
   }
-  ReplyToUser(report:any) {
+  ReplyToUser(report:any,message:any) {
     let url = environment.baseUrl + "api/Account/ReplyToUser";
     return this.http.post<any>(url, {
       "subject": "ICYl Admin",
       "emailTo": report.emailId,
       "name":report.userName,
-      "content": "<p>Hello </p><b>"+report.userName+" </b><h4>We are trying to fix this issue shortly,<br/>Thank You</h4>",
+      "content": "<p>Hello, <b>"+report.userName+"</b></p>"+message+"<br/>Thank You</h4>",
     });
   }
   GetAllTransaction(startDate: any, endDate: any, today: any, categoryId: any) {
