@@ -5,7 +5,7 @@
     </div>
     <br/>
     <div class="sizes">
-      <button pButton pRipple label="Save" (click)="SaveQuickDonation()"
+      <button [disabled]="amount<=9" pButton pRipple label="Save" (click)="SaveQuickDonation()"
       class="p-button-raised">
     </button>
     </div>

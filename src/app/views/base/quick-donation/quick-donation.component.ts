@@ -13,7 +13,7 @@ export class QuickDonationComponent implements OnInit {
   title: any;
   amountList: any;
   id: number;
-  amount: number;
+  amount: number=10;
   showLoader=false;
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -96,7 +96,7 @@ export class QuickDonationComponent implements OnInit {
   }
   OpenDialog(title: any, quote: any) {
     this.id = 0;
-    this.amount = 0;
+    this.amount = 10;
     this.title = title;
     if (quote != null) {
       this.id = Number(quote.id);
