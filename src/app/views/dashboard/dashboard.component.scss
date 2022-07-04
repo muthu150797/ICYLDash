@@ -26,3 +26,14 @@
   margin: 0 auto 2rem auto;
   display: block;
 }
+::ng-deep .p-datepicker table td {
+  padding: 0.04rem; // use as per your requirement.
+  padding-bottom: 0.001rem;
+}
+::ng-deep.ui-datepicker-buttonbar > div.ui-g div:last-child {
+  display: none;
+}
+::ng-deep.p-datepicker table td > span {
+  height: 23px;
+  width:23px;
+}

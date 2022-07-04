@@ -390,7 +390,8 @@
           <div class="row">
             <div class="p-field p-col-4 p-md-2" style="padding-top: 49px;">
               <label for="basic1">Start Date</label>
-              <p-calendar panelStyleClass="padding-top: 49px;" [maxDate]="maxDate"  (onSelect)="onBlurMethod(false)" inputId="basic" [(ngModel)]="startDate" [showIcon]="true" [showTime]="false"  showButtonBar="true" ></p-calendar>
+              <!-- [inputStyle]="{'height':'100px'} -->
+              <p-calendar  [maxDate]="maxDate"  (onSelect)="onBlurMethod(false)" inputId="basic" [(ngModel)]="startDate" [showIcon]="true" [showTime]="false"  showButtonBar="true" ></p-calendar>
            </div>
            <div class="p-field p-col-4 p-md-2">
             <label for="basic2">End Date</label>
@@ -398,7 +399,7 @@
          </div>
          <div class="p-field p-col-4 p-md-2">
           <label >Category:</label>
-          <p-dropdown (onChange)="GetAllTransactionList(false)" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
+          <p-dropdown [style]="{'width':'250px'}" (onChange)="GetAllTransactionList(false)" ngDefaultControl [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
           </p-dropdown>
           <!-- <p-dropdown [(ngModel)]="selectedCategoryId"  [options]="categoryList" optionLabel="donationName" optionValue="id">
           </p-dropdown> -->
