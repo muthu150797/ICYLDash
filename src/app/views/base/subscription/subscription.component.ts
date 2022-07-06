@@ -101,6 +101,7 @@ export class SubscriptionComponent implements OnInit {
           result.push(value);
         };
       })
+      this.selectedCategoryId=result[1].id;
       console.log("object",result)
       this.categoryList=result;
       console.log("All category from subscription pahe",this.categoryList);
