@@ -20,7 +20,7 @@
   </ul> -->
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
-      <a (click)="GetNotification()" class="nav-link"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">{{servive2.countReport}}</span></a>
+      <a (click)="GetNotification()" class="nav-link"><i class="icon-bell"></i><span *ngIf="servive2.countReport>0" class="badge badge-pill badge-danger">{{servive2.countReport}}</span></a>
     </li>
     <!-- <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-list"></i></a>

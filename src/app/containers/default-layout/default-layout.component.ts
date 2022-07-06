@@ -44,6 +44,7 @@ export class DefaultLayoutComponent {
     this.ShowInfo(
       "Today you've received " + this.notificationCount + " donation"
     );
+    this.service.countReport=0;
   }
   LoadSupportReq() {
     this.service.GetSupportReq().subscribe((res) => {
