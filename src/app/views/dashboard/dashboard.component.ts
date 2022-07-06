@@ -96,8 +96,16 @@ export class DashboardComponent implements OnInit {
   }
   GetAllCategory(){
     this.dataservice.GetAllCategory().subscribe((res)=>{
-      this.categoryList=res.donationList;
-      console.log("All category",this.categoryList);
+      let categoryData=res.donationList;
+      var result = [];
+      //Filtering data for  active status in category list
+      categoryData.forEach((value)=>{
+        if( value.active==true){
+          result.push(value);
+        };
+      })
+      console.log("object",result)
+      this.categoryList=result;      console.log("All category",this.categoryList);
     })
     // this.groupList =this.categoryList.map(x => ({
     //   label: x.donationName,
