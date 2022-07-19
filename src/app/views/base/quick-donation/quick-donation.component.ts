@@ -28,13 +28,25 @@ export class QuickDonationComponent implements OnInit {
   }
 
   Popup: boolean;
+  AmountExist(amount){
+    let list=this.amountList;
+    let exist;
+    list.forEach((ls)=> {if(ls.amount==amount) exist=true })
+    return exist;
+   }
   LoadQuickDonation() {
+
+    // if(this.AmountExist){
+    //   return false
+    // }
+
     this.showLoader=true;
     this.service.GetQuickDonation().subscribe((res) => {
       if (res.status == true) {
         let donation = res.amountList;
         donation.forEach((donation, i) => (donation["sNo"] = i + 1));
         this.amountList = donation;
+
       }
       console.log("DonationAmountList", this.amountList);
     });
@@ -63,6 +75,13 @@ export class QuickDonationComponent implements OnInit {
   // ********************User To Remove User from User List*************************/
   SaveQuickDonation() {
     this.showLoader=true;
+    if(this.AmountExist(this.amount)){
+      this.ShowError("Already Amount Exist")
+      this.showLoader=false;
+      this.Popup=false;
+      return false;
+    }
+
     this.service.SaveQuickDonation(this.id, this.amount).subscribe(
       (res) => {
         if (res.statusCode === 200) {
@@ -83,7 +102,7 @@ export class QuickDonationComponent implements OnInit {
     this.messageService.add({
       severity: "error",
       summary: message,
-      detail: "API Key or URL is invalid.",
+      detail: "",
     });
   }
   ShowSuccess(message:any) {

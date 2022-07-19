@@ -80,7 +80,7 @@ export class DataService {
     let url = environment.baseUrl + "api/Configuration/SaveQuickDonation";
     return this.http.post<any>(url, {
       id: id,
-      amount: amount,
+      amount:Number(amount),
       donationCategoryId: 0,
     });
   }
