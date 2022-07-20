@@ -13,6 +13,9 @@ import { InputTextModule } from "primeng/inputtext";
 export class LoginComponent {
   title="";
   Popup=false;
+  Popup2=false;
+   OTP='';
+   userId=0;
   recoverEmailId="";
   isLoading=false;
   loginForm = new FormGroup({
@@ -26,7 +29,9 @@ export class LoginComponent {
     password: new FormControl("admin123", Validators.required),
   });
   alertsDismiss: any = [];
-  constructor( private primengConfig: PrimeNGConfig,
+  newPassword: string;
+  constructor(
+     private primengConfig: PrimeNGConfig,
     private messageService: MessageService,
     private router: Router,
      private service: DataService) {}
@@ -36,14 +41,48 @@ export class LoginComponent {
     return this.router.navigate(['dashboard'])
   }
   RequestPassword(){
+
      this.service.RequestPassword(this.recoverEmailId).subscribe((res)=>{
-      console.log(res);
+      console.log("reset password",res);
+      if(res.status){
+        this.userId=res.userId;
+        this.ShowSuccess(res.message);
+        this.OpenDialog2("Verify OTP");
+        return this.router.navigate([''])
+
+      }
+      else this.ShowError(res.message);
+
      })
   }
+  VerifyOTP(){
+   this.service.VerfiyOTP(this.newPassword,this.OTP,this.userId).subscribe((res)=>{
+    console.log("verify res",res)
+    if(res.status){
+      this.ShowSuccess(res.message);
+      this.OpenDialog2("Verify OTP");
+    }
+    else this.ShowError(res.message);
+
+    this.Popup2=false;
+   })
+  }
+  OpenDialog2(title: any) {
+    this.newPassword='';
+    this.recoverEmailId='';
+    this.title = title;
+    this.Popup2 = true;
+    this.Popup = false;
+
+  }
   OpenDialog(title: any) {
+    this.recoverEmailId='';
+    this.newPassword='';
     this.title = title;
     this.Popup = true;
+    this.Popup2=false;
   }
+
   Login() {
     this.isLoading=true;
     this.service
@@ -67,6 +106,13 @@ export class LoginComponent {
   ShowError(message:any) {
     this.messageService.add({
       severity: "error",
+      summary: message,
+      detail: "",
+    });
+  }
+  ShowSuccess(message:any) {
+    this.messageService.add({
+      severity: "success",
       summary: message,
       detail: "",
     });

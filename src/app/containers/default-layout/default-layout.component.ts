@@ -41,9 +41,9 @@ export class DefaultLayoutComponent {
   }
   GetNotification() {
     this.notificationCount = this.service.countReport;
-    this.ShowInfo(
-      "Today you've received " + this.notificationCount + " donation"
-    );
+    if(this.notificationCount>0)
+    this.ShowInfo("Today you've received " + this.notificationCount + " donation");
+
     this.service.countReport=0;
   }
   LoadSupportReq() {

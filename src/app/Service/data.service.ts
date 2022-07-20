@@ -126,21 +126,21 @@ export class DataService {
     });
   }
   RequestPassword(emailId: any) {
-    let url = "https://localhost:7274/api/Account/ResetPassword";
+    let url =  environment.baseUrl + "api/Account/ResetPassword";
     return this.http.post<any>(url, {
-      userName: emailId,
-      password: "",
-      userId: 0,
+      "userName": emailId,
+      "password": "",
+      "userId": 0,
     });
   }
-  VerfiyOTP(newPassword: any, OTP: any) {
+  VerfiyOTP(newPassword: any, OTP: any,userId:any) {
     let url = environment.baseUrl + "api/Account/VerifyOTP";
     return this.http.post<any>(url, {
-      status: true,
-      message: "",
-      otp: OTP,
-      userId: Number(localStorage.getItem("userId")),
-      newPassword: newPassword,
+      "status": true,
+      "message": "",
+      "otp": OTP,
+      "userId":userId,
+      "newPassword": newPassword,
     });
   }
   GetAllSubscription(categoryId) {

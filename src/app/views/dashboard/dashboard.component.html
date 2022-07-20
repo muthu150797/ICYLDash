@@ -439,7 +439,7 @@
                 <!-- <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button> -->
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-                <label for="basic">Total Amount :{{TotalAmount}} <b>USD</b></label>
+                <label for="">Total Amount :{{TotalAmount}} <b>USD</b></label>
             </div>
         </ng-template>
             <ng-template pTemplate="header">
@@ -450,7 +450,7 @@
                 <th pResizableColumn pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="settleAmount">Amount<p-sortIcon field="settleAmount"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="submitTimeLocal">Date<p-sortIcon field="submitTimeLocal"></p-sortIcon></th>
-                <th pResizableColumn pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th>
+                <!-- <th pResizableColumn pSortableColumn="category">Category<p-sortIcon field="category"></p-sortIcon></th> -->
                 <th pResizableColumn pSortableColumn="accountNumber">Account Number<p-sortIcon field="accountNumber"></p-sortIcon></th>
                 <th pResizableColumn pSortableColumn="transactionStatus">Transaction Status<p-sortIcon field="transactionStatus"></p-sortIcon></th>
               </tr>
@@ -462,7 +462,7 @@
                 <td>{{ report.name }}</td>
                 <td>{{ report.settleAmount }}</td>
                 <td>{{ report.submitTimeLocal }}</td>
-                <td>{{ report.category }}</td>
+                <!-- <td>{{ report.category }}</td> -->
                 <td>{{ report.accountNumber }}</td>
                 <td>{{ report.transactionStatus }}</td>
               </tr>

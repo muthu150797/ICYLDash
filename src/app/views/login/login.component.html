@@ -1,13 +1,26 @@
 <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
   <div class="sizes">
-    <input [(ngModel)]="recoverEmailId" pInputText type="text"  placeholder="Enter Email id" />
+    <input [(ngModel)]="recoverEmailId" pInputText type="text"  placeholder="Enter Email" />
   </div>
   <br/>
   <div class="sizes">
-    <button pButton pRipple label="Save" (click)="RequestPassword()" class="p-button-raised">
+    <button pButton pRipple label="Send" (click)="RequestPassword()" class="p-button-raised">
   </button>
   </div>
   </p-dialog>
+  <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup2" [draggable]="true" [resizable]="true">
+    <div class="sizes">
+      <input [(ngModel)]="OTP" pInputText type="text"  placeholder="Enter OTP" />
+
+    </div><br/>
+    <div class="sizes"><input [(ngModel)]="newPassword" pInputText type="password"  placeholder="Enter new password" />
+    </div>
+    <br/>
+    <div class="sizes">
+      <button pButton pRipple label="Verify" (click)="VerifyOTP()" class="p-button-raised">
+    </button>
+    </div>
+    </p-dialog>
 <div class="app-body">
   <main class="main d-flex align-items-center">
     <div class="container">
