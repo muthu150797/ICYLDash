@@ -1,11 +1,13 @@
 <div class="row">
   <p-dialog [maximizable]="false" [header]="title" [(visible)]="Popup" [draggable]="true" [resizable]="true">
     <div class="sizes">
-      <input min="10" [(ngModel)]="amount" pInputText type="number"  placeholder="Enter amount" />
+      <!-- <input type="text" name="PhoneNumber" pattern="[0-9]{10}" title="Phone number"> -->
+
+      <input    minlength="4" maxlength="4" (keydown)="validAmount($event)" [(ngModel)]="amount" pInputText type="text"  placeholder="Enter amount" />
     </div>
     <br/>
     <div class="sizes">
-      <button [disabled]="amount<=9" pButton pRipple label="Save" (click)="SaveQuickDonation()"
+      <button [disabled]="amount<=9||maxAmount" pButton pRipple label="Save" (click)="SaveQuickDonation()"
       class="p-button-raised">
     </button>
     </div>

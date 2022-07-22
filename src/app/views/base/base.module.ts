@@ -73,6 +73,8 @@ import { DonationCategoryComponent } from './donation-category/donation-category
 import { UsersComponent } from './users/users.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import {DropdownModule} from 'primeng/dropdown';
+import {InputNumberModule} from 'primeng/inputnumber';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -91,6 +93,7 @@ import {DropdownModule} from 'primeng/dropdown';
      ScrollPanelModule,
      InputTextareaModule,
      TableModule,
+     InputNumberModule,
      InputTextModule,
      MessagesModule,
      DropdownModule,

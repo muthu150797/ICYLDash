@@ -11,6 +11,7 @@ export class QuickDonationComponent implements OnInit {
   first = 0;
   rows = 10;
   title: any;
+  maxAmount=false;
   amountList: any;
   id: number;
   amount: number=10;
@@ -122,6 +123,10 @@ export class QuickDonationComponent implements OnInit {
       this.amount = Number(quote.amount);
     }
     this.Popup = true;
+  }
+  validAmount(event:any){
+   this.amount=Number(event.target.value)
+   console.log("amount",event.target.value)
   }
   remove(id: any,amount:any) {
     this.showLoader=true;
